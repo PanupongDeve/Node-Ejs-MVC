@@ -1,9 +1,6 @@
-const mobileRoutes = require('./mobileRoutes');
-const testQueryRoutes = require('./testQueryRoutes');
+const catsRotes = require('./cats/cats.routes');
 
 
 module.exports = (app) => {
-    mobileRoutes(app);
-    testQueryRoutes(app);
-  
+    catsRotes(app)
 }

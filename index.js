@@ -4,8 +4,8 @@ const app = express();
 const http = require('http').Server(app)
 const io = require('socket.io')(http);
 
-const Middleware = require('./middlewares/AllMiddlewares');
-const SocketMiddleware = require('./middlewares/SocketMiddlewares/SocketMiddleware');
+const ExpressMiddlewares = require('./middlewares/ExpressMiddlewares');
+const SocketMiddlewares = require('./middlewares/SocketMiddlewares');
 const SocketRootRoutes = require('./routes/socketRoutes/rootRoutes');
 const ResfulRoutes = require('./routes/restfulRoutes/rootRoutes');
 
@@ -22,8 +22,8 @@ dbConnection.once('open', () => {
 
 
 
-Middleware(app);
-SocketMiddleware(io);
+ExpressMiddlewares(app);
+//SocketMiddlewares(io);
 
 
 io.on('connection', (socket) => {
@@ -33,7 +33,7 @@ io.on('connection', (socket) => {
         console.log('user disconnected')
     });
 
-    SocketRootRoutes(io, socket);
+   SocketRootRoutes(io, socket);
 });
 
 

@@ -1,5 +1,5 @@
 
-const toolsToken = require('../../utils/toolsToken');
+const toolsToken = require('../../../utils/toolsToken');
 
 const checkToken = async (req, res, next) => {
     const token = req.headers.authorization;
@@ -14,4 +14,3 @@ const checkToken = async (req, res, next) => {
 module.exports = {
     checkToken
 }
-

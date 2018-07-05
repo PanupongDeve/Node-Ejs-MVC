@@ -3,7 +3,7 @@ const bodyParser = require('body-parser');
 const cookieSession = require('cookie-session');
 const passport = require('passport');
 const cors = require('cors');
-const keys = require('../config/key');
+const keys = require('../../config/key');
 
 // expires Cookies with Login
 const expiresIn = 60 * 60 * 24 * 5 * 1000;

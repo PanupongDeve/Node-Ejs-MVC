@@ -1,12 +1,9 @@
-const ChatRoutes = require('./ChatRoutes');
-const FeedRoutes = require('./FeedRoutes');
-const MessagesRoutes = require('./messageRoutes');
-const ProfileRoutes = require('./profileRoutes');
+
+const catsRotes = require('./cats/cats.routes');
+
 
 
 module.exports = async (io, socket) => {
-    ChatRoutes(io, socket);
-    FeedRoutes(io, socket);
-    MessagesRoutes(io, socket);
-    ProfileRoutes(io, socket);
+    catsRotes(io, socket); 
 }
+
