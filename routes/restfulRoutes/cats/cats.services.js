@@ -54,5 +54,6 @@ module.exports = {
     create,
     findById,
     updateById,
-    deleteById
+    deleteById,
+    cats
 }
