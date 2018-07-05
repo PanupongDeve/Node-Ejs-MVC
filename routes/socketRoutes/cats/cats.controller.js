@@ -2,13 +2,16 @@ const catsServices = require('./cats.services');
 
 const findAll = (io, socket) => {
     return async (data) => {
+        const command = data.command
         try {
-            switch (data) {
+            switch (command) {
+                case 'fetch_cat':
+                    io.emit(`/api/cats/${data.catId}`, await catsServices.findById(data.catId));
+                    break;
                 case 'fetch_cats':
                     io.emit('/api/cats', await catsServices.findAll());
                     break;
                 default:
-                    io.emit('/api/cat', await catsServices.findById('5b3dc37c913d109260bd6ffc'));
                     break;
             }
 
