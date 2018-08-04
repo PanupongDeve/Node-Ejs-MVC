@@ -4,7 +4,8 @@ const app = express();
 const http = require('http').Server(app)
 const io = require('socket.io')(http);
 
-const ExpressMiddlewares = require('./middlewares/ExpressMiddlewares');
+const getExpressMiddlewaresInstance = require('./DesignLayer/Middlewares/getInstance');
+const ExpressMiddlewares = getExpressMiddlewaresInstance(app);
 const SocketMiddlewares = require('./middlewares/SocketMiddlewares');
 const SocketRootRoutes = require('./routes/socketRoutes/rootRoutes');
 const ResfulRoutes = require('./routes/restfulRoutes/rootRoutes');
@@ -22,7 +23,7 @@ dbConnection.once('open', () => {
 
 
 
-ExpressMiddlewares(app);
+ExpressMiddlewares.setupMiddleware();
 //SocketMiddlewares(io);
 
 
