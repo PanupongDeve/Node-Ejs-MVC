@@ -1,11 +1,11 @@
-const catModel = require('./cats.services');
-
+const catModel = require('./cats.model');
+const catsDTO = require('./cats.DTO');
 
 const findAll = async (req, res) => {
         try { 
-         
+            const cats = await catModel.findAll();
             const data = {
-                cats: await catModel.findAll()
+                cats: catsDTO.getCatsObject(cats)
             }
             res.send(data);
         } catch (error) {
@@ -16,8 +16,9 @@ const findAll = async (req, res) => {
 
 const findById = async (req, res) => {
     try { 
+        const cat = await catModel.findById(req.params.id);
         const data = {
-            cat: await catModel.findById(req.params.id)
+            cat: catsDTO.getCatObject(cat)
         }
         res.send(data);
     } catch (error) {
@@ -28,8 +29,9 @@ const findById = async (req, res) => {
 
 const updateById = async (req, res) => {
     try { 
+        const cat = await catModel.updateById(req.params.id, req.body)
         const data = {
-            cat: await catModel.updateById(req.params.id, req.body)
+            cat: catsDTO.getCatObject(cat)
         }
         res.send(data);
     } catch (error) {

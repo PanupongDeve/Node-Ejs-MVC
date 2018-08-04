@@ -1,13 +1,11 @@
-const mongoose = require('mongoose');
-const { Schema } = mongoose;
+const Cat = require('./cats.schema');
+const Model = require('../../DesignLayer/Database/mongo/Model');
 
-const catSchema = new Schema({
-    name : String,
-    age: Number,
-    owner: String
-    
-    
-});
+class CatModel extends Model {
+    constructor(model) {
+        super(model)
+    }
+}
 
-const Cat = mongoose.model('cat', catSchema);
-module.exports = Cat;
+const catModel = new CatModel(Cat);
+module.exports = catModel;
