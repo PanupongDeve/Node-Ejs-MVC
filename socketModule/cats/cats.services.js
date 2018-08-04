@@ -1,5 +1,5 @@
 const Cat = require('./cats.model');
-const connectDb = require('../../../utils/connectDB');
+const connectDb = require('../../utils/connectDB');
 
 let cats = false;
 
@@ -54,6 +54,5 @@ module.exports = {
     create,
     findById,
     updateById,
-    deleteById,
-    cats
+    deleteById
 }

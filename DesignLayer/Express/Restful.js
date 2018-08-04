@@ -4,9 +4,10 @@ const cookieSession = require('cookie-session');
 const passport = require('passport');
 const cors = require('cors');
 const keys = require('../../config/key');
+const restfulRoutes = require('../../restfulModule/rootRoutes');
 
 
-module.exports = class ExpressMiddle {
+module.exports = class Restful {
     constructor(app) {
         this.app = app
     }
@@ -32,5 +33,9 @@ module.exports = class ExpressMiddle {
         //config urlencode
         this.app.use(bodyParser.json());
         this.app.use(bodyParser.urlencoded({ extended: true}));  
+    }
+
+    setupRoutes() {
+        restfulRoutes(this.app);
     }
 }
