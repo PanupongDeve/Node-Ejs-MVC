@@ -1,4 +1,5 @@
 const express = require('express');
+const morgan = require('morgan');
 const bodyParser = require('body-parser');
 const cookieSession = require('cookie-session');
 const passport = require('passport');
@@ -33,6 +34,7 @@ module.exports = class Restful {
         //config urlencode
         this.app.use(bodyParser.json());
         this.app.use(bodyParser.urlencoded({ extended: true}));  
+        this.app.use(morgan('dev'));
     }
 
     setupRoutes() {
