@@ -1,6 +1,7 @@
 # NodeJS App
 web:
  image: node:alpine
+ restart: always
  container_name: api-nodejs
  working_dir: /home/node/app
  ports:
