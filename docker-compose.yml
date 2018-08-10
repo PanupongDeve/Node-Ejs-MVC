@@ -1,26 +1,21 @@
-# NodeJS App
-web:
- image: node:alpine
- restart: always
- container_name: api-nodejs
- working_dir: /home/node/app
- ports:
-  - 3000:3000
- environment:
-  - NODE_ENV=production
- volumes:
-  - ./:/home/node/app
- links:
-  - mongodb
- command: npm start
+version: “2”
+ services:
+  web:
+   build: .
+   volumes:
+    - ./:/app
+   ports:
+    - "3000:3000"
+   links:
+    - mongo
+   mongo:
+    image: mongo
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongodb-data:/data/db
 
 
-# MongoDB
-mongodb:
- image: mongo
- container_name: api-mongodb
- restart: always
- ports:
-  - 27017:27017
- volumes:
-  - mongodb-data:/data/db
+
+
+ 
