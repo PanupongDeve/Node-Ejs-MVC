@@ -4,7 +4,6 @@ const bodyParser = require('body-parser');
 const cookieSession = require('cookie-session');
 const passport = require('passport');
 const cors = require('cors');
-const keys = require('../../config/key');
 const restfulRoutes = require('../../restfulModule/rootRoutes');
 
 
@@ -16,12 +15,6 @@ module.exports = class Restful {
     setupMiddleware() {
         this.app.use(cors());
 
-        this.app.use(
-            cookieSession({
-                maxAge: 20 * 24 * 60 * 60 * 1000,
-                keys: [keys.cookieKey]
-            })
-        );
         this.app.use( passport.initialize());
         this.app.use( passport.session());
     
