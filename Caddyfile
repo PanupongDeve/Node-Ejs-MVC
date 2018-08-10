@@ -1,3 +1,3 @@
-0.0.0.0 {
-  proxy / localhost:3000
+:80 {
+  proxy / web:3000
 }
