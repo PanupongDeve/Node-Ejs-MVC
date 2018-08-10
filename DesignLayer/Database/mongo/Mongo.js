@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 
-const mongoURI = 'mongodb://localhost:27017/cats';
+const mongoURI = 'mongodb://mongo:27017/cats';
 const mongoTestURI = ''
 
 module.exports = class Mongo {
