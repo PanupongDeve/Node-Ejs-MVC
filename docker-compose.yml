@@ -2,10 +2,13 @@
 web:
  image: node:alpine
  container_name: api-nodejs
+ working_dir: /home/node/app
  ports:
   - 3000:3000
+environment:
+  - NODE_ENV=production
  volumes:
-  - .:/app
+  - ./:/home/node/app
  links:
   - mongodb
  command: npm start

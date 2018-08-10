@@ -5,7 +5,7 @@ const Server = require('./DesignLayer/Server/Server');
 const getMongoInstance = require('./DesignLayer/Database/mongo/getInstance');
 const getRestfulInstance = require('./DesignLayer/Express/getInstance');
 
-const server = new Server(app, 5000);
+const server = new Server(app, 3000);
 //const io = server.getIO();
 const mongoDb = getMongoInstance();
 const expressRestful = getRestfulInstance(app);
