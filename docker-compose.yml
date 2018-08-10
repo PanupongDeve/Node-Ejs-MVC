@@ -1,0 +1,21 @@
+# NodeJS App
+web:
+ image: node:alpine
+ container_name: api-nodejs
+ ports:
+  - 3000:3000
+ volumes:
+  - .:/app
+ links:
+  - mongodb
+ command: npm start
+
+
+# MongoDB
+mongodb:
+ image: mongo
+ container_name: api-mongodb
+ ports:
+  - 27017:27017
+ volumes:
+  - mongodb-data:/data/db
