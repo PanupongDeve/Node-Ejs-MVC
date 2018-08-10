@@ -14,8 +14,8 @@ services:
     image: mongo
     ports:
       - 27017:27017
-#    volumes:
-#      - ./mongodb/db:/data/db
+    volumes:
+      - ./mongodb/db:/data/db
 
 
 
