@@ -1,7 +1,9 @@
 version: "2"
 services:
   web:
-    build: .
+    build: 
+      context: .
+      dockerfile: web.Dockerfile
     volumes:
       - ./:/app
     ports:
@@ -12,8 +14,8 @@ services:
     image: mongo
     ports:
       - 27017:27017
-    volumes:
-      - ./mongodb/db:/data/db
+#    volumes:
+#      - ./mongodb/db:/data/db
 
 
 
