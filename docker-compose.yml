@@ -1,5 +1,17 @@
 version: "2"
 services:
+  server:
+    build:
+      context: .
+      dockerfile: server.Dockerfile
+    ports:
+      - 80:80
+      - 443:443
+      - 2015:2015
+    links:
+      - web
+    volumes:
+      - $HOME/.caddy:/root/.caddy
   web:
     build: 
       context: .
