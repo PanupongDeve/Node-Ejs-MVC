@@ -23,23 +23,28 @@ module.exports = class Local {
 
     async existingUser(user) {
         let existUser = false;
-        const request = {
-            email: user.email
-        }
+        const request = { 'local.email': user.email};
+        
         const users = await this.User.find(request);
-        if(users > 0) {
+        console.log(users);
+        if(users.length > 0) {
             existUser = true;
         }
         return existUser
     }
 
     async userRegister(user) {
+        
         const userSaveDB = {
-            email: user.email,
-            password: this.generateHash(user.password)
+            local: {
+                email: user.email,
+                password: this.generateHash(user.password)
+            }
         }
-
-        return await this.User.create(userSaveDB);
+        
+        const userRegistered = await this.User.create(userSaveDB)
+        
+        return userRegistered.local;
     }
 
     userLogin() {

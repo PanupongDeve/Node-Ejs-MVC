@@ -12,10 +12,10 @@ module.exports = class Auth {
     async registerLocal() {
         try {
             const user = {
-                email: this.req.email,
-                password: this.req.password
+                email: this.req.body.email,
+                password: this.req.body.password
             }
-
+            
             if(await this.local.existingUser(user)) {
                 throw "email is existing";
             }
@@ -38,7 +38,7 @@ module.exports = class Auth {
 
             
         } catch (error) {
-          await res.status(400).send({ error })
+          await this.res.status(400).send({ error })
         }
 
     }

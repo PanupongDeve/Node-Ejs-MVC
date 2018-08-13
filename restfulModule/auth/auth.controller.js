@@ -12,6 +12,7 @@ const login = async (req, res) => {
 
 const register = async (req, res) => {
     try { 
+        
         const auth = new Auth(req, res, User);
         await auth.registerLocal();
     } catch (error) {
