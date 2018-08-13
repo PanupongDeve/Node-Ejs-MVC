@@ -26,7 +26,7 @@ module.exports = class Local {
         const request = { 'local.email': user.email};
         
         const users = await this.User.find(request);
-        console.log(users);
+    
         if(users.length > 0) {
             existUser = true;
         }
