@@ -33,6 +33,19 @@ module.exports = class Local {
         return existUser
     }
 
+    async checkUser(user) {
+        
+        let userUndefind = false;
+        const request = {'local.email': user.email};
+
+        const users = await this.User.find(request);
+        if(users.length === 0) {
+            userUndefind = true;
+        }
+
+        return userUndefind;
+    }
+
     async userRegister(user) {
         
         const userSaveDB = {
@@ -47,7 +60,11 @@ module.exports = class Local {
         return userRegistered.local;
     }
 
-    userLogin() {
+    async userLogin(user) {
+        const request = {'local.email': user.email};
+
+        const userLoggin = await this.User.findOne(request);
+        return userLoggin.local;
 
     }
 

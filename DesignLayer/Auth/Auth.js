@@ -30,6 +30,7 @@ module.exports = class Auth {
             }
 
             const token = this.token.generateToken(data_to_token);
+           
 
             this.res.send({
                 user: userObject,
@@ -44,6 +45,42 @@ module.exports = class Auth {
     }
 
     async loginLocal() {
+        try {
+            const user = {
+                email: this.req.body.email,
+                password: this.req.body.password
+            }
 
+            if(await this.local.checkUser(user)) {
+                throw "email invalid";
+            }
+
+            const secretServer = this.token.getSecretKeyServer();
+            const userLoggin = await this.local.userLogin(user);
+
+            if(!await this.local.validPassword(user.password, userLoggin.password)) {
+                throw "password not true";
+            }
+
+            const userObject = this.local.userDTO(userLoggin);
+
+            const data_to_token = {
+                user: userLoggin,
+                secret: secretServer
+            }
+
+            const token = this.token.generateToken(data_to_token);
+           
+
+            this.res.send({
+                user: userObject,
+                token
+            })
+
+
+        
+        } catch (error) {
+            await this.res.status(400).send({ error })
+        }
     }
 }
